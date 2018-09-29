@@ -1,0 +1,14 @@
+body {
+  background: #444;
+}
+
+body h1 {
+  color: #dc3545;
+  text-align: center;
+  padding: 35px;
+  padding-bottom: 20px;
+}
+
+.sel {
+  margin-bottom: 20px;
+}

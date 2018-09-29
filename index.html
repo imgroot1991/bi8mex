@@ -1,0 +1,434 @@
+<html>
+
+<head>
+	<title>BMEX AVG POSITION</title>
+	<meta charset="UTF-8" />
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="src/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+		<script src="src/script.js"></script>
+</head>
+
+<body class="container">
+
+	<h1 >Bitmex: Calculate Average Entry!</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<form id="myform">
+				
+					<div class="input-group sel">
+						<select class="filter custom-select" id="selectEntries" onchange="ShowHideDiv()">
+									<option selected disabled value="0">Choose # Of Entries</option>
+									<option disabled value="1">1</option>
+									<option disabled value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="all">10</option>
+						</select>
+						<div class="input-group-append">
+							<button class="btn btn-danger" id="resetButton" type="button">Reset</button>
+						</div>
+					</div>
+				
+					<div>
+						<div class="input-group mb-3 1">
+							<div class="input-group-prepend">
+								<span class="input-group-text">01.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con1" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price1" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div class="input-group mb-3 2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">02.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con2" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price2" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">03.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con3" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price3" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">04.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con4" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price4" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">05.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con5" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price5" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">06.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con6" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price6" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">07.</span>
+							</div>
+				
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con7" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price7" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">08.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con8" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price8" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">09.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con9" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price9" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+						<div style="display: none" class="input-group mb-3 ent">
+							<div class="input-group-prepend">
+								<span class="input-group-text">10.</span>
+							</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Contracts : </span>
+							</div>
+							<input id="con10" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Price</span>
+							</div>
+							<input id="price10" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+						<hr>
+						<hr>
+				
+						<!–– Result -->
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Total Contracts : </span>
+							</div>
+							<input id="totalContracts" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">Average Entry Price</span>
+							</div>
+							<input id="avgPrice" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+							<div class="input-group-append">
+								<span class="input-group-text">$</span>
+							</div>
+						</div>
+				
+					</div>
+				
+				</form>
+			</div>
+			
+			<div class="col">
+
+				<div class="alert alert-danger" role="alert">
+					! Notes !
+				</div>
+				<div class="alert alert-primary" role="alert">
+					Hello Visitor !
+				</div>
+				<div class="alert alert-secondary" role="alert">
+					This is the basic version.!
+				</div>
+				<div class="alert alert-success" role="alert">
+					I've checked this tools with BTC(XBT) Contracts only.
+				</div>
+				<div class="alert alert-warning" role="alert">
+					Should work fine with other Contracts as well..!</br>Use at your own risk.!
+				</div>
+				<div class="alert alert-info" role="alert">
+					I've a few more ideas that I'll add with time!
+				</div>
+				<div class="alert alert-light" role="alert">
+					& A few more tools, as well ..!
+				</div>
+				<div class="alert alert-dark" role="alert">
+					Good Luck, Have Fun....Trade Smart!
+				</div>
+
+			</div>
+	</div>
+
+
+<script>
+
+//Start of ShowHide n Reset
+	$("#resetButton").click(function(){
+		 $("#myform")[0].reset();
+
+		 var entNums = document.getElementsByClassName("ent");
+		  entNums[0].style.display = "none";
+      entNums[1].style.display = "none";
+      entNums[2].style.display = "none";
+      entNums[3].style.display = "none";
+      entNums[4].style.display = "none";
+      entNums[5].style.display = "none";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";
+	});
+	
+	function ShowHideDiv() {
+    var entSelect = document.getElementById("selectEntries");
+    var entNums = document.getElementsByClassName("ent");
+
+    if (entSelect.value == 3) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "none";
+      entNums[2].style.display = "none";
+      entNums[3].style.display = "none";
+      entNums[4].style.display = "none";
+      entNums[5].style.display = "none";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";
+    }
+
+    if (entSelect.value == 4) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "none";
+      entNums[3].style.display = "none";
+      entNums[4].style.display = "none";
+      entNums[5].style.display = "none";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";    }
+
+    
+		if (entSelect.value == 5) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "";
+      entNums[3].style.display = "none";
+      entNums[4].style.display = "none";
+      entNums[5].style.display = "none";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";
+    }
+
+    if (entSelect.value == 6) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "";
+      entNums[3].style.display = "";
+      entNums[4].style.display = "none";
+      entNums[5].style.display = "none";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";			
+    }
+    if (entSelect.value == 7) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "";
+      entNums[3].style.display = "";
+      entNums[4].style.display = "";
+      entNums[5].style.display = "none";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";			
+    }
+
+    if (entSelect.value == 8) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "";
+      entNums[3].style.display = "";
+      entNums[4].style.display = "";
+      entNums[5].style.display = "";
+      entNums[6].style.display = "none";
+      entNums[7].style.display = "none";    }
+
+    if (entSelect.value == 9) {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "";
+      entNums[3].style.display = "";
+      entNums[4].style.display = "";
+      entNums[5].style.display = "";
+      entNums[6].style.display = "";
+	 	  entNums[7].style.display = "none";
+    }
+
+    if (entSelect.value == "all") {
+      entNums[0].style.display = "";
+      entNums[1].style.display = "";
+      entNums[2].style.display = "";
+      entNums[3].style.display = "";
+      entNums[4].style.display = "";
+      entNums[5].style.display = "";
+      entNums[6].style.display = "";
+      entNums[7].style.display = "";
+    }
+  }
+//End of ShowHide n Reset
+
+//Start of Calculation Functions
+$('input').keyup(function(){ // run anytime the value changes
+		var conArray = [];
+	  //Getting Contracts // Converting into float & then storing into an Array
+		conArray.push(Number($('#con1').val()));
+		conArray.push(Number($('#con2').val()));
+		conArray.push(Number($('#con3').val()));
+		conArray.push(Number($('#con4').val()));
+		conArray.push(Number($('#con5').val()));
+		conArray.push(Number($('#con6').val()));
+		conArray.push(Number($('#con7').val()));
+		conArray.push(Number($('#con8').val()));
+		conArray.push(Number($('#con9').val()));
+		conArray.push(Number($('#con10').val()));
+		//Getting Price
+		var priceArray = [];
+		priceArray.push(Number($('#price1').val()));
+	 	priceArray.push(Number($('#price2').val()));
+		priceArray.push(Number($('#price3').val()));
+		priceArray.push(Number($('#price4').val()));
+	 	priceArray.push(Number($('#price5').val()));
+		priceArray.push(Number($('#price6').val()));
+		priceArray.push(Number($('#price7').val()));
+		priceArray.push(Number($('#price8').val()));
+		priceArray.push(Number($('#price9').val()));
+		priceArray.push(Number($('#price10').val()));
+
+		document.getElementById("selectEntries").value;
+
+///* AVG POSITION CALCULATOR
+
+	avgEntry(conArray, priceArray);
+
+  function avgEntry(arr1, arr2) {
+
+    var totalCalculation = 0;
+
+    totalCon = conArray.reduce((x, y) => x + y, 0);
+
+    var calculation = (a, b) => a.map((x, i) => [x, b[i]]);
+    for (let [a, b] of calculation(conArray, priceArray))
+      totalCalculation += a*b;
+    
+		avgSize = totalCalculation/totalCon;
+			
+		document.getElementById('avgPrice').value = Number(avgSize);
+		document.getElementById('totalContracts').value = totalCon;
+  }
+
+});
+
+//End of Calculation Functions
+</script>
+
+
+
+
+</body>
+
+</html>
